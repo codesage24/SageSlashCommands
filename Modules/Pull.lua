@@ -1,4 +1,4 @@
-local Pull = SS:NewModule("Pull")
+local Pull = SSC:NewModule("Pull")
 
 Pull.timerFrame = nil
 Pull.timeLeft = 0
@@ -14,13 +14,13 @@ end
 function Pull:Start(arg)
     local seconds = tonumber(arg)
     if not seconds or seconds <= 0 then
-        -- SS:Print("Usage: /ss pull <seconds>")
+        -- SSC:Print("Usage: /sss pull <seconds>")
         -- return
         seconds = 10 -- default to 10 seconds if invalid input
     end
 
-    if not SS:HasPermission() then
-        SS:Print("You must be raid leader/assist or party leader.")
+    if not SSC:HasPermission() then
+        SSC:Print("You must be raid leader/assist or party leader.")
         return
     end
 
@@ -31,7 +31,7 @@ function Pull:Start(arg)
 
     self.timerFrame = CreateFrame("Frame")
 
-    SS:SendRW("Pull in " .. seconds .. " seconds!")
+    SSC:SendRW("Pull in " .. seconds .. " seconds!")
 
     self.timerFrame:SetScript("OnUpdate", function(_, delta)
         elapsed = elapsed + delta
@@ -41,16 +41,16 @@ function Pull:Start(arg)
             Pull.timeLeft = Pull.timeLeft - 1
 
             if Pull.timeLeft <= 0 then
-                SS:SendRW("PULL NOW!")
+                SSC:SendRW("PULL NOW!")
                 PlaySoundFile("Sound\\Interface\\RaidWarning.wav")
                 Pull:Clear()
                 return
             end
 
-            local db = SS.db.pull
+            local db = SSC.db.pull
 
             if Pull.timeLeft <= db.spamUnder or Pull.timeLeft % db.countdownInterval == 0 then
-                SS:SendRW(Pull.timeLeft .. "...")
+                SSC:SendRW(Pull.timeLeft .. "...")
             end
         end
     end)
@@ -59,9 +59,9 @@ end
 function Pull:Cancel()
     if self.timerFrame then
         Pull:Clear()
-        SS:SendRW("PULL TIMER CANCELLED!")
+        SSC:SendRW("PULL TIMER CANCELLED!")
     else
-        SS:Print("No active timer exists.")
+        SSC:Print("No active timer exists.")
     end
 end
 
@@ -76,7 +76,7 @@ end
 function Pull:OnEnable()
     local helpText = { "pull <seconds>", "pull cancel" }
 
-    SS:RegisterCommand("pull", 
+    SSC:RegisterCommand("pull", 
         function(arg) Pull:Execute(arg) end, 
         helpText)
 end

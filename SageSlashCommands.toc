@@ -11,3 +11,4 @@ Events.lua
 Config.lua
 Modules\Pull.lua
 Modules\Quest.lua
+Modules\Item.lua

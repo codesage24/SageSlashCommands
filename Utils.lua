@@ -1,7 +1,7 @@
-SS = SS or {}
+SSC = SSC or {}
 
 -- Updated permission check (raid OR party leader)
-function SS:HasPermission()
+function SSC:HasPermission()
     if IsInRaid() then
         return self:HasRaidWarningPermission()
     elseif IsInGroup() then
@@ -11,11 +11,11 @@ function SS:HasPermission()
     end
 end
 
-function SS:HasRaidWarningPermission()
+function SSC:HasRaidWarningPermission()
     return IsRaidLeader() or IsRaidOfficer()
 end
 
-function SS:SendRW(msg)
+function SSC:SendRW(msg)
     if IsInRaid() then
         SendChatMessage(msg, "RAID_WARNING")
     else
@@ -23,6 +23,10 @@ function SS:SendRW(msg)
     end
 end
 
-function SS:Print(msg)
+function SSC:Print(msg)
     DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99SSC|r: " .. msg)
+end
+
+function SSC:IsNumber(value)
+    return tonumber(value) ~= nil
 end

@@ -1,10 +1,10 @@
-local Quest = SS:NewModule("Quest")
+local Quest = SSC:NewModule("Quest")
 
 function Quest:Execute(arg)
     if arg == "abandonall" then
         Quest:AbandonAll()
     else
-        SS:Print("Unknown slash command for Quest Module.")
+        SSC:Print("Unknown slash command for Quest Module.")
     end
 end
 
@@ -12,7 +12,7 @@ function Quest:AbandonAll()
     local questEntries = GetNumQuestLogEntries()
 
     if questEntries == 0 then
-        SS:Print("No quests to abandon.")
+        SSC:Print("No quests to abandon.")
         return
     end
 
@@ -28,7 +28,7 @@ function Quest:AbandonAll()
         AbandonQuest()
 
         if title then
-            SS:Print("Abandoned: " .. title)
+            SSC:Print("Abandoned: " .. title)
         end
     end
 end
@@ -36,7 +36,7 @@ end
 function Quest:OnEnable()
     local helpText = { "quest abandonall" }
 
-    SS:RegisterCommand("quest", 
+    SSC:RegisterCommand("quest", 
         function(arg) Quest:Execute(arg) end, 
         helpText)
 end

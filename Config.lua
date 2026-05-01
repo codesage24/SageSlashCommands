@@ -19,14 +19,14 @@ local function CopyDefaults(src, dst)
     return dst
 end
 
-function SS:InitDB()
+function SSC:InitDB()
     SSCDB = SSCDB or {}
     self.db = CopyDefaults(defaults, SSCDB)
 end
 
 -- Hook into lifecycle
-local module = SS:NewModule("Config")
+local module = SSC:NewModule("Config")
 
 function module:OnInitialize()
-    SS:InitDB()
+    SSC:InitDB()
 end

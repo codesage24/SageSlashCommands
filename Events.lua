@@ -1,7 +1,7 @@
-SS.events = {}
+SSC.events = {}
 local eventFrame = CreateFrame("Frame")
 
-function SS:RegisterEvent(event, handler)
+function SSC:RegisterEvent(event, handler)
     if not self.events[event] then
         self.events[event] = {}
         eventFrame:RegisterEvent(event)
@@ -10,8 +10,8 @@ function SS:RegisterEvent(event, handler)
 end
 
 eventFrame:SetScript("OnEvent", function(_, event, ...)
-    if SS.events[event] then
-        for _, handler in ipairs(SS.events[event]) do
+    if SSC.events[event] then
+        for _, handler in ipairs(SSC.events[event]) do
             handler(...)
         end
     end

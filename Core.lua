@@ -1,6 +1,6 @@
-SS = {}
-SS.modules = {}
-SS.commands = {}
+SSC = {}
+SSC.modules = {}
+SSC.commands = {}
 
 local function GetSortedCommandNames(commands)
     local names = {}
@@ -20,7 +20,7 @@ local ADDON_NAMES = {
 }
 
 -- Register a module
-function SS:NewModule(name)
+function SSC:NewModule(name)
     local module = {}
     module.name = name
     self.modules[name] = module
@@ -28,7 +28,7 @@ function SS:NewModule(name)
 end
 
 -- Initialize all modules
-function SS:Initialize()
+function SSC:Initialize()
     for _, module in pairs(self.modules) do
         if module.OnInitialize then
             module:OnInitialize()
@@ -37,7 +37,7 @@ function SS:Initialize()
 end
 
 -- Enable all modules
-function SS:Enable()
+function SSC:Enable()
     for _, module in pairs(self.modules) do
         if module.OnEnable then
             module:OnEnable()
@@ -45,25 +45,25 @@ function SS:Enable()
     end
 end
 
-function SS:RegisterCommand(name, func, helpText)
+function SSC:RegisterCommand(name, func, helpText)
     self.commands[name] = {
         handler = func,
         helpText = helpText,
     }
 end
 
-function SS:PrintHelp()
-    SS:Print("Commands:")
+function SSC:PrintHelp()
+    SSC:Print("Commands:")
 
     for _, name in ipairs(GetSortedCommandNames(self.commands)) do
         local command = self.commands[name]
 
         if command.helpText then
             for _, line in ipairs(command.helpText) do
-                SS:Print("/ssc " .. line)
+                SSC:Print("/ssc " .. line)
             end
         else
-            SS:Print("/ssc " .. name)
+            SSC:Print("/ssc " .. name)
         end
     end
 end
@@ -72,8 +72,8 @@ end
 frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", function(_, event, arg1)
     if event == "ADDON_LOADED" and ADDON_NAMES[arg1] then
-        SS:Initialize()
-        SS:Enable()
+        SSC:Initialize()
+        SSC:Enable()
     end
 end)
 
@@ -83,11 +83,11 @@ SlashCmdList["SSC"] = function(msg)
     local cmd, arg = msg:match("^(%S*)%s*(.-)$")
     cmd = (cmd or ""):lower()
 
-    local command = SS.commands[cmd]
+    local command = SSC.commands[cmd]
 
     if command then
         command.handler(arg)
     else
-        SS:PrintHelp()
+        SSC:PrintHelp()
     end
 end
