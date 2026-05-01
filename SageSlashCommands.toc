@@ -1,0 +1,13 @@
+## Interface: 30300
+## Title: SageSlashCommands
+## Notes: Ascension AddOn for Various Slash Commands.
+## Author: CodeSage
+## Version: 0.1.0
+## SavedVariables: SageSlashCommandsDB
+
+Core.lua
+Utils.lua
+Events.lua
+Config.lua
+Modules\Pull.lua
+Modules\Quest.lua
