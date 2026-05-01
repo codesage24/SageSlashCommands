@@ -3,7 +3,7 @@
 ## Notes: Ascension AddOn for Various Slash Commands.
 ## Author: CodeSage
 ## Version: 0.1.0
-## SavedVariables: SageSlashCommandsDB
+## SavedVariables: SSCDB
 
 Core.lua
 Utils.lua
