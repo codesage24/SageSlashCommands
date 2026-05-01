@@ -12,11 +12,6 @@ function Pull:Execute(arg)
 end
 
 function Pull:Start(arg)
-    if arg == "cancel" then
-        Pull:Cancel()
-        return
-    end
-
     local seconds = tonumber(arg)
     if not seconds or seconds <= 0 then
         -- SS:Print("Usage: /ss pull <seconds>")
@@ -29,7 +24,7 @@ function Pull:Start(arg)
         return
     end
 
-    self:Cancel()
+    self:Clear()
 
     self.timeLeft = seconds
     local elapsed = 0

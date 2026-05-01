@@ -16,8 +16,7 @@ end
 
 local frame = CreateFrame("Frame")
 local ADDON_NAMES = {
-    SageSlashCommands = true,
-    SSPull = true,
+    SageSlashCommands = true
 }
 
 -- Register a module

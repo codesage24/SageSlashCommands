@@ -1,7 +1,7 @@
 local defaults = {
     pull = {
         countdownInterval = 5,
-        spamUnder = 10
+        spamUnder = 5
     }
 }
 
@@ -20,8 +20,8 @@ local function CopyDefaults(src, dst)
 end
 
 function SS:InitDB()
-    SSPullDB = SSPullDB or {}
-    self.db = CopyDefaults(defaults, SSPullDB)
+    SSCDB = SSCDB or {}
+    self.db = CopyDefaults(defaults, SSCDB)
 end
 
 -- Hook into lifecycle

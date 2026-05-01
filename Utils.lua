@@ -3,7 +3,7 @@ SS = SS or {}
 -- Updated permission check (raid OR party leader)
 function SS:HasPermission()
     if IsInRaid() then
-        return HasRaidWarningPermission()
+        return self:HasRaidWarningPermission()
     elseif IsInGroup() then
         return GetNumPartyMembers() > 0 and UnitIsPartyLeader("player")
     else
